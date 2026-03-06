@@ -7,7 +7,7 @@ CCLaboratories Biodiversity Atlas
 
 let x;
 let y;
-let R = 100;
+let R = 150;
 let vNumber = 200;
 let smoothness = 0.5;
 
