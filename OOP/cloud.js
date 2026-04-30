@@ -9,15 +9,34 @@ class Cloud {
         this.y0 = this.y;
         this.speedX = map(this.sc, 0.5, 1, 5, 1);
         this.isOut = false;
+        this.h = random(100);
+        this.sound = thunder;
+        this.isRaining = false;
+    }
+    //detect collision
+    checkCollision(other) {
+        let d = dist(this.x, this.y, other.x, other.y);
+        if (d < (this.sc + other.sc) * 100 / 2) {
+            console.log("boom!");
+            this.h = random(100);
+            this.isRaining = true;
+            if (!this.sound.isPlaying()) {
+                this.sound.play();
+            }
+        } else {
+            this.isRaining = false;
+        }
     }
     //everything that will draw the cloud
     display() {
         push();
+        colorMode(HSB, 100);
         translate(this.x, this.y);
         scale(this.sc);
         this.drawRightArm();
         this.drawLeftArm();
         noStroke();
+        fill(this.h, 30, 100);
         //body
         circle(0, 0, 100);
         //circles around
